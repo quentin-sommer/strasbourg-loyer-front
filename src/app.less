@@ -1,18 +1,39 @@
+@import "reset";
 @import "theme";
 @district-color: rgba(255, 154, 8, 0);
 @district-color-hover: rgba(255, 154, 8, 0.9);
 
+body {
+  box-sizing: border-box;
+  color: @gray-dark;
+  font-family: @font-family-sans-serif;
+  line-height: 1.4;
+}
+h1, h2, h3, h4, h5, h6 {
+  color: @gray-dark;
+}
 .text-center {
   text-align: center;
 }
+.stat-box-wrapper {
+  border-radius: .125em;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, .075), 0 0 0 1px rgba(0, 0, 0, .1);
+  padding: 1em;
+}
 .stat-box-title {
   margin: 0;
+  font-weight: 300;
+  font-size: 2em;
 }
 .app-title {
   margin-top: 1em;
+  font-size: 3em;
+  font-weight: @font-weight-bold;
 }
 .stat-box-label {
   margin: 0;
+  font-size: 1.07em;
+  font-weight: 300;
 }
 .justify {
   text-align: justify;
@@ -27,7 +48,22 @@
 .district {
   transition: all .1s;
   fill: @district-color;
-  stroke: rgba(0, 0, 0, .5);
+  stroke: rgba(0, 0, 0, .8);
   stroke-width: 2;
   pointer-events: all;
+}
+.lead {
+  font-weight: 300;
+  font-size: @font-size-lg;
+}
+.stat-title {
+  margin: 0;
+  font-weight: 300;
+  font-size: 2em;
+}
+@media (max-width: 800px) {
+  .district {
+    stroke-width: 5;
+    stroke: rgba(0, 0, 0, .75);
+  }
 }

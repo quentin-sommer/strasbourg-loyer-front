@@ -2,7 +2,7 @@ import {Component, h} from 'preact'
 
 const Map = (props) => (
   <div style={{
-    backgroundImage: `url(${require('../sxb_map.jpg')})`,
+    backgroundImage: `url(${require('../sxb_map.webp')})`,
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     backgroundSize: '100% 100%',

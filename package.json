@@ -11,12 +11,9 @@
     "test:watch": "nwb test-preact --server"
   },
   "dependencies": {
-    "elemental": "^0.6.1",
     "preact": "^7.1.0",
     "preact-compat": "^3.13.1",
-    "preact-css-transition-group": "^1.1.1",
     "react-collection-helpers": "^1.2.2",
-    "react-css-property-operations": "^15.4.1",
     "recharts": "^0.20.8",
     "superagent": "^3.5.0",
     "typeface-aleo": "^0.0.18",

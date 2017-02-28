@@ -2,10 +2,6 @@ import {Component, h} from 'preact'
 import Sort from 'react-collection-helpers/lib/components/Sort'
 import First from 'react-collection-helpers/lib/components/First'
 import Some from 'react-collection-helpers/lib/components/Some'
-import Card from 'elemental/lib/components/Card'
-import Row from 'elemental/lib/components/Row'
-import Col from 'elemental/lib/components/Col'
-import Spinner from 'elemental/lib/components/Spinner'
 import fetchStats from '../API/stats'
 import Map from './Map'
 import StatBox from './StatBox'
@@ -51,7 +47,7 @@ class App extends Component {
 
     return (
       <div style={{maxWidth: '960px', margin: 'auto'}}>
-        <Col>
+        <div style={{padding: '0 .5em 0 .5em'}}>
           <h1 class="font-serif text-center app-title">Loyers de
             Strasbourg</h1>
           <p class="lead justify">Nous avons analysé les données de plus de
@@ -59,55 +55,63 @@ class App extends Component {
             différentes
             plateformes immobilières afin de générer des statistiques sur les
             différents quartiers de Strasbourg</p>
-          <p class="justify">Vous êtes-vous déjà demandé quel quartier de
+          <p class="lead justify">Vous êtes-vous déjà demandé quel quartier de
             Strasbourg est le plus cher ? Eh bien,
             c'est <b>{getDisplayName(mostExp.districtId)}</b>. Le prix du
             mètre carré là-bas est de <b>{mostExp.meanSquareRent}€/m²</b> en
             moyenne. Surpris ? Profitez-en pour vérifier vos a priori sur
             votre quartier...
           </p>
-        </Col>
-        <Card>
-          <Col class="text-center" sm="100%">
-            <h2>{selected ? getDisplayName(this.state.stats.selectedDistrict) : '...'}</h2>
-          </Col>
+        </div>
+        <div
+          class="stat-box-wrapper"
+          style={{
+            paddingBottom: '.5em',
+            marginBottom: '1em'
+          }}>
+          <h2
+            class="text-center stat-title">{selected ? getDisplayName(this.state.stats.selectedDistrict) : 'Chargement'}</h2>
           {selected !== undefined
-            ? <Row>
-              <Col sm="25%">
+            ? <div
+              style={{
+                display: 'flex',
+                alignItems: 'flex-end'
+              }}>
+              <div style={{flex: 25}}>
                 <StatBox
                   value={`${selected.meanRent.toFixed(0)}€`}
                   label="Loyer moyen"
                 />
-              </Col>
-              <Col sm="25%">
+              </div>
+              <div style={{flex: 25}}>
                 <StatBox
                   value={`${selected.meanSquareRent.toFixed(1)}€`}
-                  label="Prix moyen du mètre carré"
+                  label="Prix du mètre carré"
                 />
-              </Col>
-              <Col sm="25%">
+              </div>
+              <div style={{flex: 25}}>
                 <StatBox
                   value={selected.meanRoom.toFixed(1)}
                   label="Nombre de pièces moyen"
                 />
-              </Col>
-              <Col sm="25%">
+              </div>
+              <div style={{flex: 25}}>
                 <StatBox
                   value={`${selected.meanSurface.toFixed(0)}m²`}
                   label="Surface moyenne"
                 />
-              </Col>
-            </Row>
-            : <Row>
-              <Col sm="1/3"/>
-              <Col sm="1/3" class="text-center">
-                <Spinner size="lg"/>
-              </Col>
-              <Col sm="1/3"/>
-            </Row>
+              </div>
+            </div>
+            : <div style={{display: 'flex'}}>
+              <div style={{flex: 25}}/>
+              <div style={{flex: 25}} class="text-center">
+                ...
+              </div>
+              <div style={{flex: 25}}/>
+            </div>
           }
-        </Card>
-        <Card style={{padding: 0}}>
+        </div>
+        <div style={{padding: 0}}>
           <Map
             onDistrictHover={(e) => {
               this.setState({
@@ -126,11 +130,11 @@ class App extends Component {
               })
             }}
           />
-        </Card>
-        <Col style={{marginBottom: '1em'}}>
+        </div>
+        <div class="lead text-center" style={{margin: '1em 0 1em 0'}}>
           Réalisé par <a target="#" href="http://quentin-sommer.com">Quentin
           Sommer</a>
-        </Col>
+        </div>
       </div>
     )
   }
