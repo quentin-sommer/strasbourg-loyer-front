@@ -1,22 +1,33 @@
 @import "theme";
+@district-color: rgba(255, 154, 8, 0);
+@district-color-hover: rgba(255, 154, 8, 0.9);
+
 .text-center {
   text-align: center;
 }
 .stat-box-title {
   margin: 0;
 }
+.app-title {
+  margin-top: 1em;
+}
 .stat-box-label {
   margin: 0;
+}
+.justify {
+  text-align: justify;
 }
 .font-serif {
   font-family: @font-family-serif;
 }
 .district:hover {
-  fill: gainsboro;
+  fill: @district-color-hover;
+  transition: all .2s;
 }
 .district {
-  fill: none;
-  stroke: #000000;
-  stroke-miterlimit: 10;
+  transition: all .1s;
+  fill: @district-color;
+  stroke: rgba(0, 0, 0, .5);
+  stroke-width: 2;
   pointer-events: all;
 }

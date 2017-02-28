@@ -11,11 +11,24 @@ import Map from './Map'
 import StatBox from './StatBox'
 
 const ALL_SELECTED = 17
-const getSelectedDistrict = (entries, selectedDistrictId) => {
-  return entries.find(item => item.districtId === selectedDistrictId)
+
+const DISPLAY_NAMES = {
+  1: 'Kutenau',
+  2: 'Petite France - Hôpital',
+  3: 'Wacken',
+  4: 'Quartier des XV',
+  5: 'Orangerie',
+  6: 'Esplanade',
+  7: 'Contades - République',
+  8: 'Halles',
+  9: 'Gare - Laiterie',
+  13: 'Neudorf',
+  16: 'Centre Ville',
+  [ALL_SELECTED]: 'Moyenne globale',
 }
-
-
+const getDisplayName = districtId => DISPLAY_NAMES[districtId]
+const getSelectedDistrict = (entries, selectedDistrictId) =>
+  entries.find(item => item.districtId === selectedDistrictId)
 
 class App extends Component {
   state = {
@@ -33,72 +46,96 @@ class App extends Component {
   }
 
   render({}, {page}) {
-    const means = getSelectedDistrict(this.state.stats.data, this.state.stats.selectedDistrict)
+    const selected = getSelectedDistrict(this.state.stats.data, this.state.stats.selectedDistrict)
+    const mostExp = this.state.stats.data.reduce((acc, cur) => (cur.meanSquareRent < acc.meanSquareRent && getDisplayName(cur.districtId) !== undefined) ? cur : acc, {meanSquareRent: 100})
+
     return (
       <div style={{maxWidth: '960px', margin: 'auto'}}>
-        <h1 className="font-serif">Strasbourg loyer</h1>
+        <Row>
+          <Col>
+            <h1 class="font-serif text-center app-title">Loyers de
+              Strasbourg</h1>
+            <p class="lead justify">Nous avons analysé les données de plus de
+              {' '}<b>3000 biens</b> de
+              différentes
+              plateformes immobilières afin de générer des statistiques sur les
+              différents quartiers de Strasbourg</p>
+            <p class="justify">Vous êtes-vous déjà demandé quel quartier de
+              Strasbourg est le moins cher ? Eh bien,
+              c'est <b>{getDisplayName(mostExp.districtId)}</b>. Le prix du
+              mètre carré là-bas est de <b>{mostExp.meanSquareRent}€/m²</b> en
+              moyenne. Surpris ? Profitez-en pour vérifier vos a priori sur
+              votre quartier...
+            </p>
+          </Col>
+        </Row>
         <Card>
           <Row>
-            <Col className='text-center' sm='100%'>
-              <h2>{means ? means.district.substring(0, 15) : '...'}</h2>
+            <Col class="text-center" sm="100%">
+              <h2>{selected ? getDisplayName(this.state.stats.selectedDistrict) : '...'}</h2>
             </Col>
           </Row>
-          {means !== undefined
+          {selected !== undefined
             ? <Row>
               <Col sm="25%">
                 <StatBox
-                  value={`${means.meanRent.toFixed(0)}€`}
-                  label='Loyer moyen'
+                  value={`${selected.meanRent.toFixed(0)}€`}
+                  label="Loyer moyen"
                 />
               </Col>
               <Col sm="25%">
                 <StatBox
-                  value={`${means.meanSquareRent.toFixed(1)}€`}
-                  label='Prix moyen du mètre carré'
+                  value={`${selected.meanSquareRent.toFixed(1)}€`}
+                  label="Prix moyen du mètre carré"
                 />
               </Col>
               <Col sm="25%">
                 <StatBox
-                  value={means.meanRoom.toFixed(1)}
-                  label='Nombre de pièces moyen'
+                  value={selected.meanRoom.toFixed(1)}
+                  label="Nombre de pièces moyen"
                 />
               </Col>
               <Col sm="25%">
                 <StatBox
-                  value={`${means.meanSurface.toFixed(0)}m²`}
-                  label='Surface moyenne'
+                  value={`${selected.meanSurface.toFixed(0)}m²`}
+                  label="Surface moyenne"
                 />
               </Col>
             </Row>
             : <Row>
               <Col sm="1/3"/>
-              <Col sm="1/3" className='text-center'>
+              <Col sm="1/3" class="text-center">
                 <Spinner size="lg"/>
               </Col>
               <Col sm="1/3"/>
             </Row>
           }
         </Card>
-        <Row>
+        <Card style={{padding: 0}}>
+          <Map
+            onDistrictHover={(e) => {
+              this.setState({
+                stats: {
+                  ...this.state.stats,
+                  selectedDistrict: parseInt(e.target.id, 10)
+                }
+              })
+            }}
+            onDistrictOut={() => {
+              this.setState({
+                stats: {
+                  ...this.state.stats,
+                  selectedDistrict: ALL_SELECTED
+                }
+              })
+            }}
+          />
+        </Card>
+
+        <Row style={{marginBottom: '2em'}}>
           <Col>
-            <Map
-              onDistrictHover={(e) => {
-                this.setState({
-                  stats: {
-                    ...this.state.stats,
-                    selectedDistrict: parseInt(e.target.id, 10)
-                  }
-                })
-              }}
-              onDistrictOut={() => {
-                this.setState({
-                  stats: {
-                    ...this.state.stats,
-                    selectedDistrict: ALL_SELECTED
-                  }
-                })
-              }}
-            />
+            Réalisé par <a target="#" href="http://quentin-sommer.com">Quentin
+            Sommer</a>
           </Col>
         </Row>
       </div>
