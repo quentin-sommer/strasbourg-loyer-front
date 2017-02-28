@@ -24,7 +24,7 @@ const DISPLAY_NAMES = {
   9: 'Gare - Laiterie',
   13: 'Neudorf',
   16: 'Centre Ville',
-  [ALL_SELECTED]: 'Moyenne globale',
+  [ALL_SELECTED]: 'Moyennes globale',
 }
 const getDisplayName = districtId => DISPLAY_NAMES[districtId]
 const getSelectedDistrict = (entries, selectedDistrictId) =>
@@ -47,34 +47,30 @@ class App extends Component {
 
   render({}, {page}) {
     const selected = getSelectedDistrict(this.state.stats.data, this.state.stats.selectedDistrict)
-    const mostExp = this.state.stats.data.reduce((acc, cur) => (cur.meanSquareRent < acc.meanSquareRent && getDisplayName(cur.districtId) !== undefined) ? cur : acc, {meanSquareRent: 100})
+    const mostExp = this.state.stats.data.reduce((acc, cur) => (cur.meanSquareRent > acc.meanSquareRent && getDisplayName(cur.districtId) !== undefined) ? cur : acc, {meanSquareRent: 0})
 
     return (
       <div style={{maxWidth: '960px', margin: 'auto'}}>
-        <Row>
-          <Col>
-            <h1 class="font-serif text-center app-title">Loyers de
-              Strasbourg</h1>
-            <p class="lead justify">Nous avons analysé les données de plus de
-              {' '}<b>3000 biens</b> de
-              différentes
-              plateformes immobilières afin de générer des statistiques sur les
-              différents quartiers de Strasbourg</p>
-            <p class="justify">Vous êtes-vous déjà demandé quel quartier de
-              Strasbourg est le moins cher ? Eh bien,
-              c'est <b>{getDisplayName(mostExp.districtId)}</b>. Le prix du
-              mètre carré là-bas est de <b>{mostExp.meanSquareRent}€/m²</b> en
-              moyenne. Surpris ? Profitez-en pour vérifier vos a priori sur
-              votre quartier...
-            </p>
-          </Col>
-        </Row>
+        <Col>
+          <h1 class="font-serif text-center app-title">Loyers de
+            Strasbourg</h1>
+          <p class="lead justify">Nous avons analysé les données de plus de
+            {' '}<b>3000 biens</b> de
+            différentes
+            plateformes immobilières afin de générer des statistiques sur les
+            différents quartiers de Strasbourg</p>
+          <p class="justify">Vous êtes-vous déjà demandé quel quartier de
+            Strasbourg est le plus cher ? Eh bien,
+            c'est <b>{getDisplayName(mostExp.districtId)}</b>. Le prix du
+            mètre carré là-bas est de <b>{mostExp.meanSquareRent}€/m²</b> en
+            moyenne. Surpris ? Profitez-en pour vérifier vos a priori sur
+            votre quartier...
+          </p>
+        </Col>
         <Card>
-          <Row>
-            <Col class="text-center" sm="100%">
-              <h2>{selected ? getDisplayName(this.state.stats.selectedDistrict) : '...'}</h2>
-            </Col>
-          </Row>
+          <Col class="text-center" sm="100%">
+            <h2>{selected ? getDisplayName(this.state.stats.selectedDistrict) : '...'}</h2>
+          </Col>
           {selected !== undefined
             ? <Row>
               <Col sm="25%">
@@ -131,13 +127,10 @@ class App extends Component {
             }}
           />
         </Card>
-
-        <Row style={{marginBottom: '2em'}}>
-          <Col>
-            Réalisé par <a target="#" href="http://quentin-sommer.com">Quentin
-            Sommer</a>
-          </Col>
-        </Row>
+        <Col style={{marginBottom: '1em'}}>
+          Réalisé par <a target="#" href="http://quentin-sommer.com">Quentin
+          Sommer</a>
+        </Col>
       </div>
     )
   }
