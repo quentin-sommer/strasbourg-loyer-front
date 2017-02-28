@@ -63,39 +63,30 @@ class App extends Component {
             votre quartier...
           </p>
         </div>
-        <div
-          class="stat-box-wrapper"
-          style={{
-            paddingBottom: '.5em',
-            marginBottom: '1em'
-          }}>
+        <div class="stat-box-wrapper">
           <h2
             class="text-center stat-title">{selected ? getDisplayName(this.state.stats.selectedDistrict) : 'Chargement'}</h2>
           {selected !== undefined
-            ? <div
-              style={{
-                display: 'flex',
-                alignItems: 'flex-end'
-              }}>
-              <div style={{flex: 25}}>
+            ? <div class="flex-stat-wrapper">
+              <div class="flex-stat-item">
                 <StatBox
                   value={`${selected.meanRent.toFixed(0)}€`}
                   label="Loyer moyen"
                 />
               </div>
-              <div style={{flex: 25}}>
+              <div class="flex-stat-item">
                 <StatBox
                   value={`${selected.meanSquareRent.toFixed(1)}€`}
                   label="Prix du mètre carré"
                 />
               </div>
-              <div style={{flex: 25}}>
+              <div class="flex-stat-item">
                 <StatBox
                   value={selected.meanRoom.toFixed(1)}
                   label="Nombre de pièces moyen"
                 />
               </div>
-              <div style={{flex: 25}}>
+              <div class="flex-stat-item">
                 <StatBox
                   value={`${selected.meanSurface.toFixed(0)}m²`}
                   label="Surface moyenne"
