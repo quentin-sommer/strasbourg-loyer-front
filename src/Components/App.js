@@ -2,6 +2,7 @@ import {Component, h} from 'preact'
 import Sort from 'react-collection-helpers/lib/components/Sort'
 import First from 'react-collection-helpers/lib/components/First'
 import Some from 'react-collection-helpers/lib/components/Some'
+import {ShareButtons, generateShareIcon}from 'react-share'
 import fetchStats from '../API/stats'
 import Map from './Map'
 import StatBox from './StatBox'
@@ -26,6 +27,8 @@ const getDisplayName = districtId => DISPLAY_NAMES[districtId]
 const getSelectedDistrict = (entries, selectedDistrictId) =>
   entries.find(item => item.districtId === selectedDistrictId)
 
+const FbButton = generateShareIcon('facebook')
+const TwitterButton = generateShareIcon('twitter')
 class App extends Component {
   state = {
     stats: {
@@ -122,6 +125,27 @@ class App extends Component {
                 })
               }}
             />
+          </div>
+        </div>
+        <div style={{
+          margin: '1em 0 0 0',
+          display: 'flex',
+          justifyContent: 'flex-end'
+        }}>
+          <div class="share-btn">
+            <ShareButtons.FacebookShareButton
+              url="https://www.strasbourg-loyer.fr"
+              title="Meilleurs Loyers de Strasbourg"
+              picture={require('../excerpt.webp')}>
+              <FbButton size={32}/>
+            </ShareButtons.FacebookShareButton>
+          </div>
+          <div class="share-btn">
+            <ShareButtons.TwitterShareButton
+              url="https://www.strasbourg-loyer.fr"
+              title="Découvrez les meilleurs loyers de Strasbourg !">
+              <TwitterButton size={32}/>
+            </ShareButtons.TwitterShareButton>
           </div>
         </div>
         <div style={{
