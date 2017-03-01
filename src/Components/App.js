@@ -132,11 +132,12 @@ class App extends Component {
           display: 'flex',
           justifyContent: 'flex-end'
         }}>
+          <img src={`${_API_URL_}/excerpt.webp`} alt=""/>
           <div class="share-btn">
             <ShareButtons.FacebookShareButton
               url="https://www.strasbourg-loyer.fr"
               title="Meilleurs Loyers de Strasbourg"
-              picture={require('../excerpt.webp')}>
+              picture={`${_API_URL_}/excerpt.webp`}>
               <FbButton size={32}/>
             </ShareButtons.FacebookShareButton>
           </div>
