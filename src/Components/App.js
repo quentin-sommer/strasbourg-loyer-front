@@ -2,11 +2,15 @@ import {Component, h} from 'preact'
 import Sort from 'react-collection-helpers/lib/components/Sort'
 import First from 'react-collection-helpers/lib/components/First'
 import Some from 'react-collection-helpers/lib/components/Some'
-import {ShareButtons, generateShareIcon}from 'react-share'
+import {
+  FacebookShareButton,
+  TwitterShareButton
+} from 'react-share/lib/share-buttons'
 import fetchStats from '../API/stats'
 import Map from './Map'
 import StatBox from './StatBox'
 
+const generateShareIcon = require('react-share/lib/generateIcon')
 const ALL_SELECTED = 17
 
 const DISPLAY_NAMES = {
@@ -27,8 +31,8 @@ const getDisplayName = districtId => DISPLAY_NAMES[districtId]
 const getSelectedDistrict = (entries, selectedDistrictId) =>
   entries.find(item => item.districtId === selectedDistrictId)
 
-const FbButton = generateShareIcon('facebook')
-const TwitterButton = generateShareIcon('twitter')
+const FbButton = generateShareIcon.generateIcon('facebook')
+const TwitterButton = generateShareIcon.generateIcon('twitter')
 class App extends Component {
   state = {
     stats: {
@@ -133,19 +137,19 @@ class App extends Component {
           justifyContent: 'flex-end'
         }}>
           <div class="share-btn">
-            <ShareButtons.FacebookShareButton
+            <FacebookShareButton
               url="https://www.strasbourg-loyer.fr"
               title="Meilleurs Loyers de Strasbourg"
               picture={`${_API_URL_}/excerpt.webp`}>
               <FbButton size={32}/>
-            </ShareButtons.FacebookShareButton>
+            </FacebookShareButton>
           </div>
           <div class="share-btn">
-            <ShareButtons.TwitterShareButton
+            <TwitterShareButton
               url="https://www.strasbourg-loyer.fr"
               title="Découvrez les meilleurs loyers de Strasbourg !">
               <TwitterButton size={32}/>
-            </ShareButtons.TwitterShareButton>
+            </TwitterShareButton>
           </div>
         </div>
         <div style={{
