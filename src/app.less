@@ -1,8 +1,15 @@
 @import "reset";
 @import "theme";
-@district-color: rgba(255, 154, 8, 0);
-@district-color-hover: rgba(255, 154, 8, 0.9);
 
+a {
+  color: @link-color;
+}
+a:hover {
+  color: @link-hover-color;
+}
+b {
+  color: @link-hover-color;
+}
 body {
   box-sizing: border-box;
   color: @gray-dark;
@@ -17,25 +24,28 @@ h1, h2, h3, h4, h5, h6 {
   text-align: center;
 }
 .stat-box-wrapper {
-  border-radius: .125em;
-  box-shadow: 0 2px 3px rgba(0, 0, 0, .075), 0 0 0 1px rgba(0, 0, 0, .1);
   padding: 1em;
-  margin-bottom: 1em;
+}
+.stats-map {
+  border-top-left-radius: .125em;
+  border-top-right-radius: .125em;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, .075), 0 0 0 1px rgba(0, 0, 0, .1);
 }
 .stat-box-title {
+  color: @app-primary;
   margin: 0;
-  font-weight: 300;
+  font-weight: 400;
   font-size: 2em;
 }
 .app-title {
-  margin-top: .75em;
-  font-size: 2.5em;
+  margin: 1.5em 2em 1.5em;
+  font-size: 2.75em;
   font-weight: @font-weight-bold;
 }
 .stat-box-label {
   margin: 0;
   font-size: 1.07em;
-  font-weight: 300;
+  font-weight: 400;
 }
 .justify {
   text-align: justify;
@@ -55,12 +65,25 @@ h1, h2, h3, h4, h5, h6 {
   pointer-events: all;
 }
 .lead {
-  font-weight: 300;
+  margin-top: 2em;
+  margin-bottom: 1em;
+  font-weight: 400;
+  font-size: @font-size-lg;
+}
+.faq-question {
+  font-weight: 400;
+  font-size: @font-size-lg;
+  margin-bottom: 0;
+  color: @app-primary-darker;
+}
+.faq-answer {
+  margin-top:0;
+  font-weight: 400;
   font-size: @font-size-lg;
 }
 .stat-title {
   margin: 0;
-  font-weight: 300;
+  font-weight: 400;
   font-size: 2em;
 }
 .flex-stat-wrapper {
@@ -71,13 +94,15 @@ h1, h2, h3, h4, h5, h6 {
   flex: 1 1 25%;
 }
 @media (max-width: 800px) {
-
   .district {
     stroke-width: 3;
     stroke: rgba(0, 0, 0, .75);
   }
 }
 @media (max-width: 650px) {
+  .app-title {
+    margin: 1em 0;
+  }
   .stat-box-wrapper {
     padding-bottom: 0.1em;
     margin-bottom: 0.1em;
@@ -90,5 +115,9 @@ h1, h2, h3, h4, h5, h6 {
   .flex-stat-item {
     text-align: center;
     flex: 100%;
+  }
+  .stats-box-item {
+    display: flex;
+    justify-content: space-between;
   }
 }

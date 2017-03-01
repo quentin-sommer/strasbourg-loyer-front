@@ -48,10 +48,10 @@ class App extends Component {
     return (
       <div style={{maxWidth: '960px', margin: 'auto'}}>
         <div style={{padding: '0 .5em 0 .5em'}}>
-          <h1 class="font-serif text-center app-title">Loyers de
+          <h1 class="font-serif text-center app-title">Meilleurs Loyers de
             Strasbourg</h1>
           <p class="lead justify">Nous avons analysé les données de plus de
-            {' '}<b>3000 biens</b> de
+            {' '}<b>3000 offres de location</b> de
             différentes
             plateformes immobilières afin de générer des statistiques sur les
             différents quartiers de Strasbourg</p>
@@ -60,71 +60,105 @@ class App extends Component {
             c'est <b>{getDisplayName(mostExp.districtId)}</b>. Le prix du
             mètre carré là-bas est de <b>{mostExp.meanSquareRent}€/m²</b> en
             moyenne. Surpris ? Profitez-en pour vérifier vos a priori sur
-            votre quartier...
+            votre quartier !
           </p>
         </div>
-        <div class="stat-box-wrapper">
-          <h2
-            class="text-center stat-title">{selected ? getDisplayName(this.state.stats.selectedDistrict) : 'Chargement'}</h2>
-          {selected !== undefined
-            ? <div class="flex-stat-wrapper">
-              <div class="flex-stat-item">
-                <StatBox
-                  value={`${selected.meanRent.toFixed(0)}€`}
-                  label="Loyer moyen"
-                />
+        <div class="stats-map">
+          <div class="stat-box-wrapper">
+            <h2
+              class="text-center stat-title">{selected ? getDisplayName(this.state.stats.selectedDistrict) : 'Chargement'}</h2>
+            {selected !== undefined
+              ? <div class="flex-stat-wrapper">
+                <div class="flex-stat-item">
+                  <StatBox
+                    value={`${selected.meanRent.toFixed(0)}€`}
+                    label="Loyer moyen"
+                  />
+                </div>
+                <div class="flex-stat-item">
+                  <StatBox
+                    value={`${selected.meanSurface.toFixed(0)}m²`}
+                    label="Surface moyenne"
+                  />
+                </div>
+                <div class="flex-stat-item">
+                  <StatBox
+                    value={`${selected.meanSquareRent.toFixed(1)}€`}
+                    label="Prix du mètre carré"
+                  />
+                </div>
+                <div class="flex-stat-item">
+                  <StatBox
+                    value={selected.meanRoom.toFixed(1)}
+                    label="Nombre de pièces moyen"
+                  />
+                </div>
               </div>
-              <div class="flex-stat-item">
-                <StatBox
-                  value={`${selected.meanSquareRent.toFixed(1)}€`}
-                  label="Prix du mètre carré"
-                />
+              : <div style={{display: 'flex'}}>
+                <div style={{flex: 25}}/>
+                <div style={{flex: 25}} class="text-center">
+                  ...
+                </div>
+                <div style={{flex: 25}}/>
               </div>
-              <div class="flex-stat-item">
-                <StatBox
-                  value={selected.meanRoom.toFixed(1)}
-                  label="Nombre de pièces moyen"
-                />
-              </div>
-              <div class="flex-stat-item">
-                <StatBox
-                  value={`${selected.meanSurface.toFixed(0)}m²`}
-                  label="Surface moyenne"
-                />
-              </div>
-            </div>
-            : <div style={{display: 'flex'}}>
-              <div style={{flex: 25}}/>
-              <div style={{flex: 25}} class="text-center">
-                ...
-              </div>
-              <div style={{flex: 25}}/>
-            </div>
-          }
+            }
+          </div>
+          <div style={{padding: 0}}>
+            <Map
+              onDistrictHover={(e) => {
+                this.setState({
+                  stats: {
+                    ...this.state.stats,
+                    selectedDistrict: parseInt(e.target.id, 10)
+                  }
+                })
+              }}
+              onDistrictOut={() => {
+                this.setState({
+                  stats: {
+                    ...this.state.stats,
+                    selectedDistrict: ALL_SELECTED
+                  }
+                })
+              }}
+            />
+          </div>
         </div>
-        <div style={{padding: 0}}>
-          <Map
-            onDistrictHover={(e) => {
-              this.setState({
-                stats: {
-                  ...this.state.stats,
-                  selectedDistrict: parseInt(e.target.id, 10)
-                }
-              })
-            }}
-            onDistrictOut={() => {
-              this.setState({
-                stats: {
-                  ...this.state.stats,
-                  selectedDistrict: ALL_SELECTED
-                }
-              })
-            }}
-          />
-        </div>
-        <div class="lead text-center" style={{margin: '1em 0 1em 0'}}>
-          Réalisé par <a target="#" href="http://quentin-sommer.com">Quentin
-          Sommer</a>
+        <div style={{
+          marginTop: '2.5em',
+          padding: '0 .5em 0 .5em'
+        }}>
+          <h2>FAQ</h2>
+          <p class="faq-question">Où est le quartier X ?</p>
+          <p className="faq-answer"><span class="faq-question">-> </span>La
+            carte
+            est volontairement centrée sur
+            le centre-ville car c'est la zone comportant le plus de données.</p>
+          <p class="faq-question">D'où proviennent les données ?</p>
+          <p className="faq-answer"><span class="faq-question">-> </span>De
+            différents sites d'immobilier.</p>
+          <p class="faq-question">Pourquoi l'hôpital est avec la Petite France
+            ?</p>
+          <p className="faq-answer"><span class="faq-question">-> </span>L'hôpital
+            en lui-même n'influant pas sur
+            les données, nous avons décidé de l'inclure à la Petite France pour
+            toutes les locations présentent autour de la porte de l'hôpital.</p>
+          <p class="faq-question">Je ne suis pas d'accord avec le tracé du
+            quartier X</p>
+          <p className="faq-answer"><span class="faq-question">-> </span>
+            Nous avons essayé de concilier
+            différentes représentations des quartiers, en prenant en compte les
+            données disponibles dans chacuns des quartiers.</p>
+          <p class="faq-question">J'ai une autre question !</p>
+          <p className="faq-answer"><span class="faq-question">-> </span>Vous
+            pouvez me contacter sur <a href="https://twitter.com/quentin_smr">Twitter</a>.
+          </p>
+
+
+          <p class="lead text-center" style={{margin: '1.5em 0 1em 0'}}>
+            Réalisé par <a target="#" href="https://twitter.com/quentin_smr">Quentin
+            Sommer</a>
+          </p>
         </div>
       </div>
     )
