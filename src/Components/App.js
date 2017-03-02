@@ -157,7 +157,7 @@ class App extends Component {
           padding: '0 .5em 0 .5em'
         }}>
           <h2>FAQ</h2>
-          <p class="faq-question">Où est le quartier X ?</p>
+          <p class="faq-question">Où se situe le quartier X ?</p>
           <p className="faq-answer"><span class="faq-question">-> </span>La
             carte
             est volontairement centrée sur
