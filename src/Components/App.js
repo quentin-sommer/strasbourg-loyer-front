@@ -56,7 +56,7 @@ class App extends Component {
       <div style={{maxWidth: '960px', margin: 'auto'}}>
         <div style={{padding: '0 .5em 0 .5em'}}>
           <h1 class="font-serif text-center app-title">Meilleurs Loyers de
-            Strasbourg</h1>
+            Strasbourg🏠</h1>
           <p class="lead justify">Nous avons analysé les données de plus de
             {' '}<b>3000 offres de location</b> de
             différentes
@@ -67,7 +67,7 @@ class App extends Component {
             c'est <b>{getDisplayName(mostExp.districtId)}</b>. Le prix du
             mètre carré là-bas est de <b>{mostExp.meanSquareRent}€/m²</b> en
             moyenne. Surpris ? Profitez-en pour vérifier vos a priori sur
-            votre quartier !
+            votre quartier ➡️️
           </p>
         </div>
         <div class="stats-map">
@@ -158,27 +158,27 @@ class App extends Component {
         }}>
           <h2>FAQ</h2>
           <p class="faq-question">Où se situe le quartier X ?</p>
-          <p className="faq-answer"><span class="faq-question">-> </span>La
+          <p className="faq-answer"><span class="faq-question">➡ </span>La
             carte
             est volontairement centrée sur
             le centre-ville car c'est la zone comportant le plus de données.</p>
           <p class="faq-question">D'où proviennent les données ?</p>
-          <p className="faq-answer"><span class="faq-question">-> </span>De
+          <p className="faq-answer"><span class="faq-question">➡ </span>De
             différents sites d'immobilier.</p>
           <p class="faq-question">Pourquoi l'hôpital est avec la Petite France
             ?</p>
-          <p className="faq-answer"><span class="faq-question">-> </span>L'hôpital
+          <p className="faq-answer"><span class="faq-question">➡ </span>L'hôpital
             en lui-même n'influant pas sur
             les données, nous avons décidé de l'inclure à la Petite France pour
             toutes les locations présentent autour de la porte de l'hôpital.</p>
           <p class="faq-question">Je ne suis pas d'accord avec le tracé du
             quartier X</p>
-          <p className="faq-answer"><span class="faq-question">-> </span>
+          <p className="faq-answer"><span class="faq-question">➡ </span>
             Nous avons essayé de concilier
             différentes représentations des quartiers, en prenant en compte les
             données disponibles dans chacuns des quartiers.</p>
           <p class="faq-question">J'ai une autre question !</p>
-          <p className="faq-answer"><span class="faq-question">-> </span>Vous
+          <p className="faq-answer"><span class="faq-question">➡ </span>Vous
             pouvez me contacter sur <a target="#" href="https://twitter.com/quentin_smr">Twitter</a>.
           </p>
 
