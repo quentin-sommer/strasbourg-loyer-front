@@ -67,7 +67,7 @@ class App extends Component {
             c'est <b>{getDisplayName(mostExp.districtId)}</b>. Le prix du
             mètre carré là-bas est de <b>{mostExp.meanSquareRent}€/m²</b> en
             moyenne. Surpris ? Profitez-en pour vérifier vos a priori sur
-            votre quartier ➡➡
+            votre quartier ➡
           </p>
         </div>
         <div class="stats-map">
