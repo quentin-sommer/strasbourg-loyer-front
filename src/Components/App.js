@@ -179,7 +179,7 @@ class App extends Component {
             données disponibles dans chacuns des quartiers.</p>
           <p class="faq-question">J'ai une autre question !</p>
           <p className="faq-answer"><span class="faq-question">-> </span>Vous
-            pouvez me contacter sur <a href="https://twitter.com/quentin_smr">Twitter</a>.
+            pouvez me contacter sur <a target="#" href="https://twitter.com/quentin_smr">Twitter</a>.
           </p>
 
 
