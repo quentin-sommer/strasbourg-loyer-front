@@ -4,7 +4,8 @@
   "description": "Describe strabourg-rent-front here",
   "private": true,
   "scripts": {
-    "build": "nwb build-preact-app",
+    "build": "nwb build-preact-app && npm run sw",
+    "sw": "sw-precache --config=sw-precache.config.js --verbose",
     "clean": "nwb clean-app",
     "start": "nwb serve-preact-app --install --reload",
     "test:coverage": "nwb test-preact --coverage",
@@ -22,7 +23,8 @@
   },
   "devDependencies": {
     "nwb": "^0.15.6",
-    "nwb-less": "^0.5.1"
+    "nwb-less": "^0.5.1",
+    "sw-precache": "^5.0.0"
   },
   "author": "",
   "license": "MIT",

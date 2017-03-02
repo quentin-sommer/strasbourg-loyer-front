@@ -7,6 +7,7 @@ require('typeface-aleo')
 if (process.env.NODE_ENV === 'production') {
   require('./hotjar').default
   require('./ga').default
+  require('./sw-registration')
 }
 
 let root
