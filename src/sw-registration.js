@@ -10,6 +10,7 @@ if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('service-worker.js').then(function(reg) {
       // updatefound is fired if service-worker.js changes.
       reg.onupdatefound = function() {
+        console.log('update found')
         // The updatefound event implies that reg.installing is set see
         // https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-container-updatefound-event
         const installingWorker = reg.installing
