@@ -164,22 +164,24 @@ class App extends Component {
             le centre-ville car c'est la zone comportant le plus de données.</p>
           <p class="faq-question">D'où proviennent les données ?</p>
           <p className="faq-answer"><span class="faq-question">➡ </span>De
-            différents sites d'immobilier.</p>
+            différents sites d'immobilier populaires.</p>
           <p class="faq-question">Pourquoi l'hôpital est avec la Petite France
             ?</p>
           <p className="faq-answer"><span class="faq-question">➡ </span>L'hôpital
-            en lui-même n'influant pas sur
-            les données, nous avons décidé de l'inclure à la Petite France pour
-            toutes les locations présentent autour de la porte de l'hôpital.</p>
+            n'influant pas en lui-même sur
+            les données, il est inclus avec la Petite France pour
+            toutes les locations présentes autour de la porte de l'hôpital.</p>
           <p class="faq-question">Je ne suis pas d'accord avec le tracé du
             quartier X</p>
           <p className="faq-answer"><span class="faq-question">➡ </span>
-            Nous avons essayé de concilier
-            différentes représentations des quartiers, en prenant en compte les
-            données disponibles dans chacuns des quartiers.</p>
+            J'ai essayé de concilier différentes représentations des quartiers,
+            en prenant en compte les
+            différents tracés existants et les
+            données disponibles dans chacun des quartiers.</p>
           <p class="faq-question">J'ai une autre question !</p>
           <p className="faq-answer"><span class="faq-question">➡ </span>Vous
-            pouvez me contacter sur <a target="#" href="https://twitter.com/quentin_smr">Twitter</a>.
+            pouvez me contacter sur <a target="#"
+                                       href="https://twitter.com/quentin_smr">Twitter</a>{' !'}
           </p>
 
 
