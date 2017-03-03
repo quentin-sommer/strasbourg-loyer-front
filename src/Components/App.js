@@ -187,7 +187,7 @@ class App extends Component {
 
           <p class="lead text-center" style={{margin: '1.5em 0 1em 0'}}>
             Réalisé par <a target="#" href="https://twitter.com/quentin_smr">Quentin
-            Sommer</a>
+            Sommer</a>New content
           </p>
         </div>
       </div>
