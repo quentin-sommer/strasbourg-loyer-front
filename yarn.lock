@@ -4530,7 +4530,7 @@ preact-compat@^3.13.1:
     proptypes "^0.14.3"
     standalone-react-addons-pure-render-mixin "^0.1.1"
 
-preact-render-to-string@^3.2.1:
+preact-render-to-string@^3.2.1, preact-render-to-string@^3.6.0:
   version "3.6.0"
   resolved "https://registry.yarnpkg.com/preact-render-to-string/-/preact-render-to-string-3.6.0.tgz#03a49d2d755a766c3d421e8b06d6edbb33ed6bde"
   dependencies:

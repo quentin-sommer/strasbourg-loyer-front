@@ -13,10 +13,16 @@ if (process.env.NODE_ENV === 'production') {
 let root
 function init() {
   let App = require('./Components/App').default
+  const mount = document.querySelector('#app')
 
+  if (process.env.NODE_ENV !== 'production') {
+    const renderToString = require('preact-render-to-string')
+    console.log(renderToString(<App/>))
+  }
+  mount.removeChild(mount.children[0])
   root = render(
     <App/>,
-    document.querySelector('#app'), root
+    mount, root
   )
 }
 
