@@ -19,10 +19,10 @@ function init() {
     const renderToString = require('preact-render-to-string')
     console.log(renderToString(<App/>))
   }
-  mount.removeChild(mount.children[0])
   root = render(
     <App/>,
-    mount, root
+    mount,
+    mount.children[0]
   )
 }
 
