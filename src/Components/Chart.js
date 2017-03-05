@@ -39,7 +39,7 @@ const Chart = (props) => {
                      margin={{top: 5, right: 30, left: 20, bottom: 5}}
           >
             <XAxis dataKey="x"/>
-            <YAxis domain={['dataMin - 1', 'dataMax + 1']}/>
+            <YAxis domain={['dataMin - 10', 'dataMax + 10']}/>
             <CartesianGrid strokeDasharray="3 3"/>
             <Tooltip/>
             <Legend />
@@ -54,7 +54,7 @@ const Chart = (props) => {
                      margin={{top: 5, right: 30, left: 20, bottom: 5}}
           >
             <XAxis dataKey="x"/>
-            <YAxis domain={['dataMin - .5', 'dataMax + .5']}/>
+            <YAxis domain={['dataMin - 5', 'dataMax + 5']}/>
             <CartesianGrid strokeDasharray="3 3"/>
             <Tooltip/>
             <Legend />
@@ -72,7 +72,7 @@ const Chart = (props) => {
                      margin={{top: 5, right: 30, left: 20, bottom: 5}}
           >
             <XAxis dataKey="x"/>
-            <YAxis domain={['dataMin - .5', 'dataMax + .5']}/>
+            <YAxis domain={['dataMin - .1', 'dataMax + .1']}/>
             <CartesianGrid strokeDasharray="3 3"/>
             <Tooltip/>
             <Legend />
@@ -87,7 +87,7 @@ const Chart = (props) => {
                      margin={{top: 5, right: 30, left: 20, bottom: 5}}
           >
             <XAxis dataKey="x"/>
-            <YAxis domain={['dataMin - .5', 'dataMax + .5']}/>
+            <YAxis domain={['dataMin - 5', 'dataMax + 5']}/>
             <CartesianGrid strokeDasharray="3 3"/>
             <Tooltip/>
             <Legend />
