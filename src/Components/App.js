@@ -14,7 +14,7 @@ const generateShareIcon = require('react-share/lib/generateIcon')
 const ALL_SELECTED = 17
 
 const DISPLAY_NAMES = {
-  1: 'Kutenau',
+  1: 'Krutenau',
   2: 'Petite France - Hôpital',
   3: 'Wacken',
   4: 'Quartier des XV',
