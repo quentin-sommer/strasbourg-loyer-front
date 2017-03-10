@@ -4,6 +4,6 @@ module.exports = {
     'dist/**.css',
     'dist/**.html',
     'dist/**.js',
-    'dist/**.jpg',
+    'dist/sxb_map**.jpg',
   ],
 }
