@@ -57,7 +57,7 @@ class App extends Component {
         <div style={{padding: '0 .5em 0 .5em'}}>
           <h1 class="font-serif text-center app-title">Meilleurs Loyers de
             Strasbourg🏠</h1>
-          <p class="lead justify">Nous avons analysé les données de plus de
+          <p class="lead justify">Strabourg Loyer analyse les données de plus de
             {' '}<b>3000 offres de location</b> de
             différentes
             plateformes immobilières afin de générer des statistiques sur les
