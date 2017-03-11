@@ -75,12 +75,13 @@ class App extends Component {
               method="post"
               name="mc-embedded-subscribe-form" class="validate"
               target="_blank" novalidate>
-              <label class="cta-text" for="mce-EMAIL">Pour être tenu au courant des bonnes
+              <label class="cta-text" for="email">Pour être tenu au courant des bonnes
                 affaires sur les loyers
                 de Strasbourg, inscrivez-vous !</label>
               <div class="cta-wrapper">
                 <input type="email"
                        value=""
+                       id="email"
                        name="EMAIL"
                        placeholder="email"
                        required
