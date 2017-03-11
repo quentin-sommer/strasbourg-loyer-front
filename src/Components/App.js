@@ -69,34 +69,36 @@ class App extends Component {
             moyenne. Surpris ? Profitez-en pour vérifier vos a priori sur
             votre quartier ➡
           </p>
-          <link
-            href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css"
-            rel="stylesheet" type="text/css"/>
-          <div id="mc_embed_signup">
+          <div>
             <form
               action="//opentrends.us15.list-manage.com/subscribe/post?u=0b97c20a77244defb0439594d&amp;id=1aaef25256"
-              method="post" id="mc-embedded-subscribe-form"
+              method="post"
               name="mc-embedded-subscribe-form" class="validate"
               target="_blank" novalidate>
-              <div id="mc_embed_signup_scroll" style={{textAlign: 'left'}}>
-                <label for="mce-EMAIL">Pour être tenu au courant des bonnes
-                  affaires sur les loyers
-                  de Strasbourg, inscrivez-vous !</label>
-                <input type="email" value="" name="EMAIL" class="email"
-                       id="mce-EMAIL" placeholder="email" required/>
-                <div style="position: absolute; left: -5000px;"
-                     aria-hidden="true">
-                  <input type="text"
-                         name="b_0b97c20a77244defb0439594d_1aaef25256"
-                         tabindex="-1" value=""/>
-                </div>
-                <div class="clear" style={{marginLeft: '10px'}}>
-                  <input type="submit" value="S'inscrire"
+              <label class="cta-text" for="mce-EMAIL">Pour être tenu au courant des bonnes
+                affaires sur les loyers
+                de Strasbourg, inscrivez-vous !</label>
+              <div class="cta-wrapper">
+                <input type="email"
+                       value=""
+                       name="EMAIL"
+                       placeholder="email"
+                       required
+                       class="cta-input"
+                />
+                <div>
+                  <input type="submit"
+                         value="S'inscrire"
                          name="subscribe"
-                         id="mc-embedded-subscribe"
-                         style={{backgroundColor: '#FF9A08'}}
-                         class="button"/>
+                         class="cta-button"
+                  />
                 </div>
+              </div>
+              <div style="position: absolute; left: -5000px;"
+                   aria-hidden="true">
+                <input type="text"
+                       name="b_0b97c20a77244defb0439594d_1aaef25256"
+                       tabindex="-1" value=""/>
               </div>
             </form>
             <small>Maximum 1 message par semaine</small>

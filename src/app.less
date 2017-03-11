@@ -96,6 +96,55 @@ h1, h2, h3, h4, h5, h6 {
   cursor: pointer;
   margin: .5em;
 }
+.cta-wrapper {
+  margin-top: .75em;
+  display: flex;
+  flex-direction: row;
+}
+.cta-text {
+  font-size: @font-size-lg;
+  font-weight: bold;
+}
+.cta-button {
+  font-family: @font-family-sans-serif;
+  color: white;
+  outline: none;
+  border: none;
+  height: 40px;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 0 0 10px;
+  line-height: 38px;
+  padding: 0 30px;
+  background-color: @app-primary;
+  border-radius: 3px;
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .3px;
+  text-decoration: none;
+  transition: all .1s;
+}
+.cta-button:hover {
+  transition: all .15s;
+  background-color: @link-hover-color;
+}
+.cta-input {
+  box-sizing: border-box;
+  min-width: 200px;
+  max-width: 100%;
+  outline: none;
+  border: 1px solid @gray-light;
+  border-radius: 3px;
+  font-size: @font-size-base;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 15px;
+  width: 260px;
+}
+.cta-input:focus {
+  border: 1px solid @gray-dark;
+}
 @media (max-width: 800px) {
   .district {
     stroke-width: 3;
@@ -123,9 +172,16 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     justify-content: space-between;
   }
-}
-#mc_embed_signup {
-  background: #FFFFFF;
-  clear: left;
-  width: 100%;
+  .cta-wrapper {
+    flex-direction: column;
+  }
+  .cta-input {
+    width: 100%;
+  }
+  .cta-button {
+    margin-left: 0;
+    margin-top: .5em;
+    margin-bottom: 1em;
+    width: 100%;
+  }
 }
