@@ -26,6 +26,43 @@ const getDisplayName = districtId => DISPLAY_NAMES[districtId]
 const getSelectedDistrict = (entries, selectedDistrictId) =>
   entries.find(item => item.districtId === selectedDistrictId)
 
+const getMostExp = data => data.reduce((acc, cur) => {
+  if (cur.district === 'ALL' || getDisplayName(cur.districtId) === undefined) {
+    // skip all data field and not displayed fields
+    return acc
+  }
+  cur.details.forEach(detail => {
+    if (acc[detail.room] === undefined) {
+      acc[detail.room] = {distictId: -1, meanSquareRent: 0}
+    }
+    if (detail.meanSquareRent > acc[detail.room].meanSquareRent) {
+      acc[detail.room] = {
+        districtId: cur.districtId,
+        meanSquareRent: detail.meanSquareRent,
+      }
+    }
+  })
+  return acc
+}, {})
+const getLeastExp = data => data.reduce((acc, cur) => {
+  if (cur.district === 'ALL' || getDisplayName(cur.districtId) === undefined) {
+    // skip all data field and not displayed fields
+    return acc
+  }
+  cur.details.forEach(detail => {
+    if (acc[detail.room] === undefined) {
+      acc[detail.room] = {distictId: -1, meanSquareRent: 2000}
+    }
+    if (detail.meanSquareRent < acc[detail.room].meanSquareRent) {
+      acc[detail.room] = {
+        districtId: cur.districtId,
+        meanSquareRent: detail.meanSquareRent,
+      }
+    }
+  })
+  return acc
+}, {})
+
 const FbButton = generateShareIcon.generateIcon('facebook')
 const TwitterButton = generateShareIcon.generateIcon('twitter')
 class App extends Component {
@@ -45,7 +82,8 @@ class App extends Component {
 
   render({}, {page}) {
     const selected = getSelectedDistrict(this.state.stats.data, this.state.stats.selectedDistrict)
-    const mostExp = this.state.stats.data.reduce((acc, cur) => (cur.meanSquareRent > acc.meanSquareRent && getDisplayName(cur.districtId) !== undefined) ? cur : acc, {meanSquareRent: 0})
+    const leastExp = getLeastExp(this.state.stats.data)
+    const mostExp = getMostExp(this.state.stats.data)
 
     return (
       <div style={{maxWidth: '960px', margin: 'auto'}}>
@@ -57,11 +95,14 @@ class App extends Component {
             différentes
             plateformes immobilières afin de générer des statistiques sur les
             différents quartiers de Strasbourg</p>
-          <p class="lead justify">Vous êtes-vous déjà demandé quel quartier de
-            Strasbourg est le plus cher ? Eh bien,
-            c'est <b>{getDisplayName(mostExp.districtId)}</b>. Le prix du
-            mètre carré là-bas est de <b>{mostExp.meanSquareRent}€/m²</b> en
-            moyenne. Surpris ? Profitez-en pour vérifier vos a priori sur
+          <p class="lead justify">Vous êtes-vous déjà demandé ou trouver les T2 les moins cher de
+            Strasbourg ? Eh bien il faut aller du côté
+            de <b>{getDisplayName(leastExp[2] ? leastExp[2].districtId : '')}</b>. Le prix au
+            mètre carré des T2 y est de <b>{leastExp[2] ? leastExp[2].meanSquareRent : ''}€/m²</b> en
+            moyenne. Les studios les plus chers ? Ils sont situés
+            vers <b>{getDisplayName(mostExp[1] ? mostExp[1].districtId : '')}</b> et
+            coûtent en moyenne <b>{mostExp[1] ? mostExp[1].meanSquareRent : ''}€/m²</b>.
+            Surpris ? Profitez-en pour vérifier vos a priori sur
             votre quartier ➡
           </p>
           <div>
