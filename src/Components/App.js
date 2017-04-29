@@ -1,15 +1,10 @@
 import {Component, h} from 'preact'
-import Sort from 'react-collection-helpers/lib/components/Sort'
-import First from 'react-collection-helpers/lib/components/First'
-import Some from 'react-collection-helpers/lib/components/Some'
-import {
-  FacebookShareButton,
-  TwitterShareButton
-} from 'react-share/lib/share-buttons'
+import {FacebookShareButton, TwitterShareButton} from 'react-share/lib/share-buttons'
 import fetchStats from '../API/stats'
 import Map from './Map'
 import StatBox from './StatBox'
 
+const h2 = h
 const generateShareIcon = require('react-share/lib/generateIcon')
 const ALL_SELECTED = 17
 
@@ -38,13 +33,13 @@ class App extends Component {
     stats: {
       data: [],
       selectedDistrict: ALL_SELECTED,
-    }
+    },
   }
 
   componentDidMount() {
     fetchStats()
       .then(stats => this.setState({
-        stats: {...this.state.stats, data: stats[0].data}
+        stats: {...this.state.stats, data: stats[0].data},
       }))
   }
 
@@ -110,30 +105,32 @@ class App extends Component {
             <h2
               class="text-center stat-title">{selected ? getDisplayName(this.state.stats.selectedDistrict) : 'Chargement'}</h2>
             {selected !== undefined
-              ? <div class="flex-stat-wrapper">
-                <div class="flex-stat-item">
-                  <StatBox
-                    value={`${selected.meanRent.toFixed(0)}€`}
-                    label="Loyer moyen"
-                  />
-                </div>
-                <div class="flex-stat-item">
-                  <StatBox
-                    value={`${selected.meanSurface.toFixed(0)}m²`}
-                    label="Surface moyenne"
-                  />
-                </div>
-                <div class="flex-stat-item">
-                  <StatBox
-                    value={`${selected.meanSquareRent.toFixed(1)}€`}
-                    label="Prix du mètre carré"
-                  />
-                </div>
-                <div class="flex-stat-item">
-                  <StatBox
-                    value={selected.meanRoom.toFixed(1)}
-                    label="Nombre de pièces moyen"
-                  />
+              ? <div>
+                <div class="flex-stat-wrapper">
+                  <div class="flex-stat-item">
+                    <StatBox
+                      value={`${selected.meanRent.toFixed(0)}€`}
+                      label="Loyer moyen"
+                    />
+                  </div>
+                  <div class="flex-stat-item">
+                    <StatBox
+                      value={`${selected.meanSurface.toFixed(0)}m²`}
+                      label="Surface moyenne"
+                    />
+                  </div>
+                  <div class="flex-stat-item">
+                    <StatBox
+                      value={`${selected.meanSquareRent.toFixed(1)}€`}
+                      label="Prix du mètre carré"
+                    />
+                  </div>
+                  <div class="flex-stat-item">
+                    <StatBox
+                      value={selected.meanRoom.toFixed(1)}
+                      label="Nombre de pièces moyen"
+                    />
+                  </div>
                 </div>
               </div>
               : <div style={{display: 'flex'}}>
@@ -145,60 +142,102 @@ class App extends Component {
               </div>
             }
           </div>
-          <div style={{padding: 0}}>
+          < div style={{padding: 0}}>
             <Map
               onDistrictHover={(e) => {
                 this.setState({
                   stats: {
                     ...this.state.stats,
-                    selectedDistrict: parseInt(e.target.id, 10)
-                  }
+                    selectedDistrict: parseInt(e.target.id, 10),
+                  },
                 })
               }}
               onDistrictOut={() => {
                 this.setState({
                   stats: {
                     ...this.state.stats,
-                    selectedDistrict: ALL_SELECTED
-                  }
+                    selectedDistrict: ALL_SELECTED,
+                  },
                 })
               }}
             />
           </div>
         </div>
+        {selected &&
+        <div class="stats-map">
+          {(selected.details && selected.details.length !== 0) ?
+            <div class="stat-box-wrapper">
+              <h2 class="text-center stat-subtitle">Détail pour chaque type
+                de bien</h2>
+              {selected.details.filter((e, idx) => idx < 4).map((detail, idx) =>
+                <div class="flex-stat-wrapper" style={{borderBottom: '1px solid rgba(0, 0, 0, .075)'}}>
+                  <div class="flex-stat-item">
+                    <StatBox
+                      value={`${detail.meanRent.toFixed(0)}€`}
+                      label=""
+                    />
+                  </div>
+                  <div class="flex-stat-item">
+                    <StatBox
+                      value={`${detail.meanSurface.toFixed(0)}m²`}
+                      label=""
+                    />
+                  </div>
+                  <div class="flex-stat-item">
+                    <StatBox
+                      value={`${detail.meanSquareRent.toFixed(1)}€/m²`}
+                      label=""
+                    />
+                  </div>
+                  <div class="flex-stat-item">
+                    <StatBox
+                      value={`T${detail.room}`}
+                      label=""
+                    />
+                  </div>
+                </div>,
+              )}
+            </div>
+            :
+            <h2 class="text-center stat-subtitle">
+              😞 Ce quartier ne comporte pas assez d'offres pour faire des stats précises !
+            </h2>
+          }
+        </div>
+        }
         <div style={{
           margin: '1em 0 0 0',
           display: 'flex',
-          justifyContent: 'flex-end'
+          justifyContent: 'flex-end',
         }}>
-          <div class="share-btn">
+          <div class='share-btn'>
             <FacebookShareButton
-              url="https://www.strasbourg-loyer.fr"
-              title="Meilleurs Loyers de Strasbourg"
+              url='https://www.strasbourg-loyer.fr'
+              title='Meilleurs Loyers de Strasbourg'
               picture={`${_API_URL_}/excerpt.webp`}>
               <FbButton size={32}/>
             </FacebookShareButton>
           </div>
-          <div class="share-btn">
+          <div class='share-btn'>
             <TwitterShareButton
-              url="https://www.strasbourg-loyer.fr"
-              title="Découvrez les meilleurs loyers de Strasbourg !">
+              url='https://www.strasbourg-loyer.fr'
+              title='Découvrez les meilleurs loyers de Strasbourg !'>
               <TwitterButton size={32}/>
             </TwitterShareButton>
           </div>
         </div>
         <div style={{
           marginTop: '2.5em',
-          padding: '0 .5em 0 .5em'
+          padding: '0 .5em 0 .5em',
         }}>
           <h2>FAQ</h2>
-          <p class="faq-question">Où se situe le quartier X ?</p>
+          <p class='faq-question'>Où se situe le quartier X ?</p>
           <p className="faq-answer"><span class="faq-question">➡ </span>La
             carte
             est volontairement centrée sur
             le centre-ville car c'est la zone comportant le plus de données.</p>
-          <p class="faq-question">D'où proviennent les données ?</p>
-          <p className="faq-answer"><span class="faq-question">➡ </span>De
+          <p class='faq-question'>D'où proviennent les données ?</p>
+          <p className='faq-answer'><span class='faq-question'>➡ </span>De
             différents sites d'immobilier populaires.</p>
           <p class="faq-question">Pourquoi l'hôpital est avec la Petite France
             ?</p>
