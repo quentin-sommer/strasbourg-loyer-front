@@ -1,8 +1,5 @@
-import request from 'superagent'
+import Data from '../data/Current'
 
-const fetchStats = () => request
-  .get(`${_API_URL_}/api/stats`)
-  .then(response => response.body)
-  .catch(console.log)
+const fetchStats = async () => Data
 
 export default fetchStats
