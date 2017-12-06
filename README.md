@@ -30,3 +30,15 @@ This is the shape of the `data.json` file
   }]
 }]
 ```
+
+The last day of data is also visible using this webapp.
+
+You'll need `node` and `yarn`:
+
+`git clone git@github.com:quentin-sommer/strasbourg-loyer-front.git && cd
+strasbourg-loyer-front && yarn && yarn start`
+
+Alternatively (Should work but will be slower to install):
+
+`git clone git@github.com:quentin-sommer/strasbourg-loyer-front.git && cd
+strasbourg-loyer-front && npm i && npm start`
