@@ -1,5 +1,7 @@
 # strabourg-rent-front
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/quentin-sommer/strasbourg-loyer-front.svg)](https://greenkeeper.io/)
+
 Rent data analysis of my hometown Strasbourg, France.
 
 I gathered rent data for 280 days and computed several metrics every days. Now everything
