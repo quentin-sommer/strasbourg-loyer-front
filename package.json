@@ -12,18 +12,18 @@
     "test:watch": "nwb test-preact --server"
   },
   "dependencies": {
-    "preact": "^7.1.0",
+    "preact": "^8.4.2",
     "preact-compat": "^3.13.1",
-    "preact-render-to-string": "^3.6.0",
+    "preact-render-to-string": "^4.1.0",
     "react-collection-helpers": "^1.2.2",
-    "react-share": "^1.12.1",
-    "recharts": "^0.20.8",
-    "typeface-aleo": "^0.0.18",
-    "typeface-lato": "^0.0.25"
+    "react-share": "^2.4.0",
+    "recharts": "^1.5.0",
+    "typeface-aleo": "^0.0.69",
+    "typeface-lato": "^0.0.54"
   },
   "devDependencies": {
-    "nwb": "^0.15.6",
-    "nwb-less": "^0.5.1",
+    "nwb": "^0.23.0",
+    "nwb-less": "^0.7.1",
     "sw-precache": "^5.0.0"
   },
   "author": "",
