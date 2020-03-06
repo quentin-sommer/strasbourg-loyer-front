@@ -95,7 +95,7 @@ class App extends Component {
             différentes
             plateformes immobilières afin de générer des statistiques sur les
             différents quartiers de Strasbourg</p>
-          <p class="lead justify">Vous êtes-vous déjà demandé ou trouver les T2 les moins cher de
+          <p class="lead justify">Vous êtes-vous déjà demandé ou trouver les T2 les moins chers de
             Strasbourg ? Eh bien il faut aller du côté
             de <b>{getDisplayName(leastExp[2] ? leastExp[2].districtId : '')}</b>. Le prix au
             mètre carré des T2 y est de <b>{leastExp[2] ? leastExp[2].meanSquareRent : ''}€/m²</b> en
